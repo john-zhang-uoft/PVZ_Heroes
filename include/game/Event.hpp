@@ -12,6 +12,20 @@ public:
     virtual ~Event() = default;
 };
 
+class AttackEvent : public Event {
+public:
+    AttackEvent(const std::string& source, const std::string& target, int damage)
+        : source(source), target(target), damage(damage) {}
+
+    std::string getType() const override {
+        return "AttackEvent";
+    }
+
+    std::string source;
+    std::string target;
+    int damage;
+};
+
 class DamageEvent : public Event {
 public:
     DamageEvent(const std::string& source, const std::string& target, int damage)

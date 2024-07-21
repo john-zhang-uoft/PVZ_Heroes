@@ -34,7 +34,7 @@ int main() {
     CardFactory::instance().registerCard("Zombie", []() -> std::unique_ptr<Card> {
         auto card = std::make_unique<Zombie>();
         card->name = "Basic Zombie";
-        card->strength = 1;
+        card->strength =5;
         card->health = 4;
         card->cost = 1;
         return card;
@@ -76,14 +76,14 @@ int main() {
 
     // Add cards to battlefield
     auto plantCard = CardFactory::instance().createCard("Plant");
-    auto deathtouchZombieCard = CardFactory::instance().createCard("DeathtouchZombie");
+    auto deathtouchZombieCard = CardFactory::instance().createCard("Zombie");
     dynamic_cast<Fighter*>(plantCard.get())->addObserver(observer);
     dynamic_cast<Zombie*>(deathtouchZombieCard.get())->addObserver(observer);
 
     battlefield.addPlant(0, std::unique_ptr<Fighter>(dynamic_cast<Fighter*>(plantCard.release())));
     battlefield.addZombie(0, std::unique_ptr<Fighter>(dynamic_cast<Fighter*>(deathtouchZombieCard.release())));
 
-    // Add environment to battlefield
+    // // Add environment to battlefield
     auto environmentCard = CardFactory::instance().createCard("DoubleDamageEnvironment");
     battlefield.addEnvironment(0, std::unique_ptr<Environment>(dynamic_cast<Environment*>(environmentCard.release())));
 

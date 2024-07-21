@@ -15,7 +15,7 @@ public:
 
     void takeDamage(int damage) {
         health -= damage;
-        notify(DamageEvent(name, "", damage));
+        notify(DamageEvent("", name, damage));
         if (health <= 0) {
             notify(DeathEvent(name));
         }
@@ -24,12 +24,12 @@ public:
     virtual void attack(Fighter* opponent, DamagePackage damagePackage) {
         if (opponent) {
             int damage = damagePackage.getDamage();
+            notify(DamageEvent(name, opponent->name, damage));
             opponent->takeDamage(damage);
             if (deathtouch && strength > 0) {
                 opponent->markedForDeath = true;
                 notify(DeathEvent(opponent->name));
             }
-            takeDamage(opponent->strength);
         }
     }
 
