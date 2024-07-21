@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Build folder
+/build/
+
+# Ignore editor and IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
